@@ -12,7 +12,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
     credentials: true,
   })
 );
@@ -32,8 +32,7 @@ app.use("/user", userRouter);
 const start = async () => {
   try {
     const URI = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}/?retryWrites=true&w=majority`;
-    // const URI =
-    //   "mongodb+srv://eduard:eduard@cluster0.nc835.azure.mongodb.net/?retryWrites=true&w=majority";
+
     await mongoose
       .connect(URI)
       .then(() => {
@@ -43,7 +42,6 @@ const start = async () => {
         console.log(err);
       });
 
-    // Starte Server auf dem in der Config hinterlegten Port
     app.listen(process.env.PORT, () => {
       console.log(`Server started on port ${process.env.PORT}`);
     });
