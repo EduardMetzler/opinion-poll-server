@@ -22,7 +22,27 @@ export const register = async (req, res, next) => {
       password,
     });
     await user.save();
+    ///
+    // const user = await await User.findOne({ email });
+    // if (!user) {
+    //   const error = createError(404, "email not found!");
+    //   return next(error);
+    // }
+    // const matched = await user.comparePassword(password, user.password);
+    // if (!matched) {
+    //   const error = createError(500, { msg: "password incorrect!" });
+    //   return next(error);
+    // }
+    const payload = { userId: user._id };
+    const token = jwt.sign(payload, process.env.SECRETKEY, { expiresIn: "1h" });
+    console.log("🚀 ~ file: userController.js:72 ~ login ~ token:", token);
+    res.cookie("token", token, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000, // one day
+    });
     const userWithoutPassword = user.toJSON();
+    console.log(userWithoutPassword);
+    ///
     return res
       .status(201)
       .json({ msg: "User created Successfully!", userWithoutPassword });
