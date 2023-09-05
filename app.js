@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 
 import userRouter from "./routes/userRoute.js";
+import opinionPollRouter from "./routes/opinionPollRouter.js";
 
 dotenv.config();
 const app = express();
@@ -28,6 +29,7 @@ app.use((error, req, res, next) => {
 });
 
 app.use("/user", userRouter);
+app.use("/opinion-poll", opinionPollRouter);
 
 const start = async () => {
   try {
