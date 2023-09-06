@@ -12,6 +12,7 @@ export const authenticate = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
+    res.clearCookie("token");
     return res.status(500).json({ msg: "server error" });
   }
 };
