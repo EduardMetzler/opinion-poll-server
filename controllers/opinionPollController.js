@@ -27,7 +27,7 @@ export const getAllMyOpinionPollsList = async (req, res, next) => {
   try {
     const allMyOpinionPollsList = await OpinionPoll.find({
       owner: req.user.userId,
-    }).select("-__v");
+    }).select(["-__v", "-questions"]);
 
     res.status(200).json(allMyOpinionPollsList);
   } catch (error) {
