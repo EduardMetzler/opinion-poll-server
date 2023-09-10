@@ -2,6 +2,7 @@ import express from "express";
 import {
   createOpinionPoll,
   getAllMyOpinionPollsList,
+  getMyOpinionPoll,
 } from "../controllers/opinionPollController.js";
 import { authenticate } from "../middleware/authenticate.js";
 
@@ -13,5 +14,7 @@ router.get(
   authenticate,
   getAllMyOpinionPollsList
 );
+
+router.get("/get-my-opinion-poll/:_id", authenticate, getMyOpinionPoll);
 
 export default router;
