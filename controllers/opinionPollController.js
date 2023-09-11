@@ -47,3 +47,15 @@ export const getMyOpinionPoll = async (req, res, next) => {
     next(createError(500, { msg: "Server Error!" }));
   }
 };
+
+export const getOpinionPoll = async (req, res, next) => {
+  try {
+    const oneOpinionPoll = await OpinionPoll.findById(req.params._id).select([
+      "-__v",
+    ]);
+
+    return res.status(200).json(oneOpinionPoll);
+  } catch (error) {
+    next(createError(500, { msg: "Server Error!" }));
+  }
+};
