@@ -4,6 +4,7 @@ import {
   getAllMyOpinionPollsList,
   getMyOpinionPoll,
   getOpinionPoll,
+  postOpinionPollVote,
 } from "../controllers/opinionPollController.js";
 import { authenticate } from "../middleware/authenticate.js";
 
@@ -18,5 +19,6 @@ router.get(
 
 router.get("/get-my-opinion-poll/:_id", authenticate, getMyOpinionPoll);
 router.get("/:_id", getOpinionPoll);
+router.put("/vote/:_id", postOpinionPollVote);
 
 export default router;
