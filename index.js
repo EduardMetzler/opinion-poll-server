@@ -13,7 +13,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "https://opinion-poll-server-43dj.vercel.app/",
+    origin: "https://opinion-poll-server-43dj.vercel.app",
     credentials: true,
   })
 );
