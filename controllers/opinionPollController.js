@@ -65,16 +65,19 @@ export const postOpinionPollVote = async (req, res, next) => {
     const { select } = req.body;
 
     const data = await OpinionPoll.findById(req.params._id);
-    console.log(data.questions[select]);
+    // console.log(data.questions[select]);
 
     const oneOpinionPoll = await OpinionPoll.findOneAndUpdate(
       {
         _id: req.params._id,
         "questions.id": select,
       },
-      { $set: { "questions.$.vote": data.questions[select].vote + 1 } }
+      { $set: { "questions.$.vote": data.questions[select].vote + 1 } },
+      {
+        new: true,
+      }
     ).select(["-__v"]);
-    console.log(oneOpinionPoll);
+    // console.log(oneOpinionPoll);
 
     return res.status(200).json(oneOpinionPoll);
   } catch (error) {
