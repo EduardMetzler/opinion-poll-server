@@ -66,7 +66,7 @@ export const login = async (req, res, next) => {
       return next(error);
     }
     const payload = { userId: user.id };
-    const token = jwt.sign(payload, "000000", { expiresIn: "1h" });
+    const token = jwt.sign(payload, process.env.SECRETKEY, { expiresIn: "1h" });
     console.log("🚀 ~ file: userController.js:72 ~ login ~ token:", token);
     res.cookie("token", token, {
       httpOnly: true,
