@@ -11,14 +11,14 @@ import { authenticate } from "../middleware/authenticate.js";
 const router = express.Router();
 
 router.post("/create", authenticate, createOpinionPoll);
-router.get(
+router.post(
   "/get-all-my-opinionPolls-list",
   authenticate,
   getAllMyOpinionPollsList
 );
 
-router.get("/get-my-opinion-poll/:_id", authenticate, getMyOpinionPoll);
-router.get("/:_id", getOpinionPoll);
+router.post("/get-my-opinion-poll/:_id", authenticate, getMyOpinionPoll);
+router.post("/:_id", getOpinionPoll);
 router.put("/vote/:_id", postOpinionPollVote);
 
 export default router;

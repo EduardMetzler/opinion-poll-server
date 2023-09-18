@@ -18,7 +18,7 @@ router.post("/register", registerValidationRules, validate, register);
 
 router.post("/login", login);
 
-router.get("/checkCookie", authenticate, checkCookie);
+router.post("/checkCookie", authenticate, checkCookie);
 router.get("/clearCookie", clearCookie);
 
 export default router;
