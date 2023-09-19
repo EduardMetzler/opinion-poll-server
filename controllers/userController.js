@@ -36,16 +36,16 @@ export const register = async (req, res, next) => {
     const payload = { userId: user._id };
     const token = jwt.sign(payload, process.env.SECRETKEY, { expiresIn: "1h" });
     console.log("🚀 ~ file: userController.js:72 ~ login ~ token:", token);
-    res.cookie("token", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // one day
-    });
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   maxAge: 24 * 60 * 60 * 1000, // one day
+    // });
     const userWithoutPassword = user.toJSON();
     console.log(userWithoutPassword);
     ///
     return res
       .status(201)
-      .json({ msg: "User created Successfully!", userWithoutPassword });
+      .json({ token, msg: "User created Successfully!", userWithoutPassword });
   } catch (error) {
     next(error);
   }
@@ -68,10 +68,10 @@ export const login = async (req, res, next) => {
     const payload = { userId: user.id };
     const token = jwt.sign(payload, process.env.SECRETKEY, { expiresIn: "1h" });
     console.log("🚀 ~ file: userController.js:72 ~ login ~ token:", token);
-    res.cookie("token", token, {
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // one day
-    });
+    // res.cookie("token", token, {
+    //   httpOnly: true,
+    //   maxAge: 24 * 60 * 60 * 1000, // one day
+    // });
     const userWithoutPassword = user.toJSON();
     console.log(userWithoutPassword);
 
