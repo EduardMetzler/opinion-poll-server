@@ -13,6 +13,7 @@ export const OpinionPollSchema = new Schema({
       minlength: 1,
     },
   ],
+  onlyLink: { type: Boolean, default: true },
   owner: {
     type: Schema.Types.ObjectId,
     ref: "User",

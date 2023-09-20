@@ -86,10 +86,9 @@ export const postOpinionPollVote = async (req, res, next) => {
 
 export const getAllOpinionPollsListLinkFasl = async (req, res, next) => {
   try {
-    const allOpinionPollsListLinkFasl = await OpinionPoll.find({}).select([
-      "-__v",
-      "-questions",
-    ]);
+    const allOpinionPollsListLinkFasl = await OpinionPoll.find({
+      onlyLink: false,
+    }).select(["-__v", "-questions"]);
 
     return res.status(200).json(allOpinionPollsListLinkFasl);
   } catch (error) {
