@@ -65,7 +65,6 @@ export const postOpinionPollVote = async (req, res, next) => {
     const { select } = req.body;
 
     const data = await OpinionPoll.findById(req.params._id);
-    // console.log(data.questions[select]);
 
     const oneOpinionPoll = await OpinionPoll.findOneAndUpdate(
       {
@@ -80,6 +79,19 @@ export const postOpinionPollVote = async (req, res, next) => {
     // console.log(oneOpinionPoll);
 
     return res.status(200).json(oneOpinionPoll);
+  } catch (error) {
+    next(createError(500, { msg: "Server Error!" }));
+  }
+};
+
+export const getAllOpinionPollsListLinkFasl = async (req, res, next) => {
+  try {
+    const allOpinionPollsListLinkFasl = await OpinionPoll.find({}).select([
+      "-__v",
+      "-questions",
+    ]);
+
+    return res.status(200).json(allOpinionPollsListLinkFasl);
   } catch (error) {
     next(createError(500, { msg: "Server Error!" }));
   }
