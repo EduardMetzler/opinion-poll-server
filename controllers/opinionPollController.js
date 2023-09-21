@@ -8,10 +8,11 @@ dotenv.config();
 export const createOpinionPoll = async (req, res, next) => {
   try {
     console.log(req.body);
-    const { title, questions } = req.body;
+    const { title, questions, onlyLink } = req.body;
     const opinionPoll = new OpinionPoll({
       title,
       questions,
+      onlyLink,
       owner: req.user.userId,
     });
 
